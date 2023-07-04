@@ -1,0 +1,38 @@
+create table emp_111(
+eid int primary key,
+ename varchar2(20),
+salary number(8,2),
+hire_date date,
+adress varchar2(50)
+);
+
+DESCRIBE emp_111
+
+Insert into emp_111(eid,ename,salary,hire_date,adress)
+values(1,'Tushar',50000,'11-Jan-1999','Mirpur');
+
+Insert into emp_111(eid,ename,salary,hire_date,adress)
+values (2,'Pranto',55000,'10-jan-1996', 'Cuadanga');
+
+Insert into emp_111(eid,ename,salary,hire_date,adress)
+values (3,'Sabit',57000,'10-jan-1997', 'Pabna');
+
+Insert into emp_111(eid,ename,salary,hire_date,adress)
+values (4,'Tamim',51000,sysdate,'Jhinaidoho');
+
+Insert into emp_111(eid,ename,salary,hire_date,adress)
+values (5,'Johir',40000,'11-jan-2024','Gopalganj');
+
+update emp_111
+set
+adress='Jhinaidho'
+where eid=4;
+
+
+commit;
+select * from emp_111;
+
+delete from emp_111
+where eid=5;
+rollback;
+

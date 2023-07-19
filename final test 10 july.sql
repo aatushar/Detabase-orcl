@@ -1,0 +1,64 @@
+Qn- 1
+
+CREATE TABLE tushar07 (
+  e_id        NUMBER,
+  e_name      VARCHAR2(255),
+  e_email     VARCHAR2(255),
+  e_hire_date DATE,
+  salary      NUMBER(10,2)
+);
+
+Qn-2
+
+CREATE SEQUENCE seq_tushar07
+  START WITH 1
+  INCREMENT BY 1
+  NOCACHE
+  NOCYCLE;
+  
+
+Qn- 3
+
+INSERT INTO tushar07 (e_id, e_name, e_email, e_hire_date, salary)
+VALUES (seq_tushar07.NEXTVAL, 'Habibur', 'habibur@gmail.com', SYSDATE, 10000);
+
+delete from tushar07
+where e_id=6;
+
+update tushar07
+set
+e_name= 'Nayem'
+where e_id= 3;
+
+select * from tushar07;
+
+
+
+Qn- 4
+
+SELECT *
+FROM tushar07
+WHERE e_name LIKE '%a%' AND salary < (SELECT MAX(salary) FROM tushar07);
+
+Qn- 5
+SELECT d.department_name,Round(AVG(e.salary)) AS average_salary, COUNT(e.commission_pct) AS num_employees
+FROM hr.departments d
+JOIN hr.employees e ON d.department_id = e.department_id
+WHERE e.commission_pct IS NOT NULL
+GROUP BY d.department_name;
+
+Qn-6
+
+SELECT e.first_name, e.last_name, e.employee_id, e.job_id
+FROM hr.employees e
+WHERE e.department_id IN (
+  SELECT d.department_id
+  FROM hr.departments d
+  WHERE d.location_id = (
+    SELECT l.location_id
+    FROM hr.locations l
+    WHERE l.city = 'Toronto'
+  )
+);
+
+
